@@ -31,4 +31,12 @@
 		<!-- ViewResolver는 여러 개 등록될 수 있고 우선순위 지정 가능 -->
 		<property name="order" value="1" />
 	</bean>
+	
+	<!-- MessageSource -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<!-- 메시지 소스의 위치 -->
+		<property name="basenames" value="messages_ko" />	
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
 </beans>
