@@ -76,6 +76,23 @@
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>5.4.0.Final</version>
 		</dependency>
+		
+		<!--  database settings & connection pooling  -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.179</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<!--  database settings & connection pooling  -->
+		
+		
 	</dependencies>
+	
+	
 			
 </project>
