@@ -59,6 +59,7 @@ public class UserController {
 	@RequestMapping("/login")
 	public String login(@Valid User user, BindingResult bindingResult, HttpSession session, Model model) {
 		log.debug("User :{}" ,user);
+		System.out.println("로그인 입력.");
 		if(bindingResult.hasErrors()) {
 			return "users/login"; 
 		}
@@ -66,14 +67,17 @@ public class UserController {
 		User id = userDao.findById(user.getUserId());
 		if(id == null) {
 			model.addAttribute("errorMessage", "존재하지 않는 사용자입니다.");
+			System.out.println("존재하지 않는 사용자입니다.");
 			// 에러 처리 - 존재하지 않는 사용자입니다.
 			return "users/login";
 			
-		}if(!id.equals(user.getPassword())){
+		}if(!id.getPassword().equals(user.getPassword())){
+			model.addAttribute("errorMessage", "비밀번호가 틀립니다.");
+			System.out.println("비밀번호가 틀립니다.");
 			// 에러 처리 - 비밀번호가 틀립니다.
 			return "users/login";
 		}		
-		session.setAttribute("userId", user.getUserId());
+		session.setAttribute("userId", id.getUserId());
 		// 세션에 사용자 정보 저장.
 		return "redirect:/";
 	}
