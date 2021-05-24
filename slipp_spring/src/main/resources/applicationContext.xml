@@ -14,4 +14,9 @@
 		p:driverClassName="${database.driverClassName}" p:url="${database.url}"
 		p:username="${database.username}" p:password="${database.password}" />
 		
+	<bean id="userDao" class="net.slipp.dao.users.UserDao" 
+		p:dataSource-ref="dataSource"
+		/>
+	
+	
 </beans>
