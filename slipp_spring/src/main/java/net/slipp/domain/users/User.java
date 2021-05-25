@@ -69,7 +69,12 @@ public class User {
 		return authenticate.matchPassword(this.password);
 	}
 	
-	
+	public boolean mathUserId(String inputUserId) {
+		if (inputUserId == null) {
+			return false;
+		}
+		return inputUserId.equals(this.userId);
+	}
 	
 	
 	@Override
@@ -113,5 +118,7 @@ public class User {
 	public String toString() {
 		return "User [userId=" + userId + ", password=" + password + ", name=" + name + ", email=" + email + "]";
 	}
+
+
 		
 }
