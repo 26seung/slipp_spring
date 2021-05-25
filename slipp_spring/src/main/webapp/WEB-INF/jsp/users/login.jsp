@@ -22,13 +22,12 @@
 					<h1>로그인</h1>
 				</div>
 		
-				<form:form modelAttribute="user" cssclass="form-horizontal" action="/users/login" method="post">
-				<form Class="form-horizontal" action="/users/login" method="post">
+				<form:form modelAttribute="authenticate" cssClass="form-horizontal" action="/users/login" method="post">
 					<div class="control-group">
 						<label class="control-label" for="userId">사용자 아이디</label>
 						<div class="controls">
-						<form:input path="userId"/>
-						<form:errors path="userId" cssClass="error" />				
+							<form:input path="userId" />
+							<form:errors path="userId" cssClass="error" />
 						</div>
 					</div>
 					<div class="control-group">
@@ -51,7 +50,7 @@
 						</div>
 					</div>	
 					</form:form>		
-				</form>
+				
 			</div>
 		</div>
 	</div>
