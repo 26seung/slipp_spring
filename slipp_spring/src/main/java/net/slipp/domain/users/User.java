@@ -24,7 +24,7 @@ public class User {
 	public User() {
 		
 	}
-		
+
 	public User(String userId, String password, String name, String email) {
 		super();
 		this.userId = userId;
@@ -58,6 +58,15 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	
+	public boolean matchPassword(Authenticate authenticate) {
+		if (this.password == null) {
+			return false;
+		}
+		
+		return authenticate.matchPassword(this.password);
 	}
 	
 	

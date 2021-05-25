@@ -14,8 +14,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 
 import net.slipp.dao.users.UserDao;
+import net.slipp.domain.users.Authenticate;
 import net.slipp.domain.users.User;
 
 @Controller
@@ -57,28 +59,31 @@ public class UserController {
 	}
 	
 	@RequestMapping("/login")
-	public String login(@Valid User user, BindingResult bindingResult, HttpSession session, Model model) {
-		log.debug("User :{}" ,user);
+	public String login(@Valid Authenticate authenticate, BindingResult bindingResult, HttpSession session, Model model) {
+		log.debug("User :{}" ,authenticate);
 		System.out.println("로그인 입력.");
 		if(bindingResult.hasErrors()) {
 			return "users/login"; 
 		}
 		
-		User id = userDao.findById(user.getUserId());
-		if(id == null) {
+		User user = userDao.findById(authenticate.getUserId());
+		if (user == null) {
 			model.addAttribute("errorMessage", "존재하지 않는 사용자입니다.");
-			System.out.println("존재하지 않는 사용자입니다.");
-			// 에러 처리 - 존재하지 않는 사용자입니다.
 			return "users/login";
-			
-		}if(!id.getPassword().equals(user.getPassword())){
+		}
+		
+		if (!user.matchPassword(authenticate)) {
 			model.addAttribute("errorMessage", "비밀번호가 틀립니다.");
-			System.out.println("비밀번호가 틀립니다.");
-			// 에러 처리 - 비밀번호가 틀립니다.
 			return "users/login";
-		}		
-		session.setAttribute("userId", id.getUserId());
+		}	
+		session.setAttribute("userId", user.getUserId());
 		// 세션에 사용자 정보 저장.
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("userId");
 		return "redirect:/";
 	}
 }
