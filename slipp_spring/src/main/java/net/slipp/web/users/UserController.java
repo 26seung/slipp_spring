@@ -80,10 +80,11 @@ public class UserController {
 		if(temp == null) {
 			throw new NullPointerException();
 		}
-		String userId = (String)temp;
-		if(!user.mathUserId(userId)) {
-			throw new NullPointerException();
-		}
+		// user 클래스에 update 리펙토링
+//		String userId = (String)temp;
+//		if(!user.mathUserId(userId)) {
+//			throw new NullPointerException();
+//		}
 		
 		userDao.update(user);
 		log.debug("Database : {}", userDao.findById(user.getUserId()));
