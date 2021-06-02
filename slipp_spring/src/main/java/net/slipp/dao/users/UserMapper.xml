@@ -10,7 +10,7 @@
 
 	<insert id="create">
 		insert into USERS
-		values (#{userId},#{password},#{name},#{email})
+		values (#{userId}, #{password}, #{name}, #{email})
 	</insert>
 	
 	<update id="update">
