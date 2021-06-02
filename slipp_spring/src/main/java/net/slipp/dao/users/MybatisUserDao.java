@@ -1,11 +1,17 @@
 package net.slipp.dao.users;
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import net.slipp.domain.users.User;
 
+@Repository("userDao")
 public class MybatisUserDao implements UserDao {
 
+	
+	@Resource(name="sqlSession")
 	private SqlSession sqlSession;
 	
 	public void setSqlSession(SqlSession sqlSession) {
